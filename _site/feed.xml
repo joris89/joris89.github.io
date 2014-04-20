@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jorisvda</title>
+    <link></link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <description>My Blog.</description>
+    <language>en-us</language>
+    <pubDate>Sun, 20 Apr 2014 22:09:46 +0200</pubDate>
+    <lastBuildDate>Sun, 20 Apr 2014 22:09:46 +0200</lastBuildDate>
+
+    
+      <item>
+        <title>My first NodeJS Application</title>
+        <link>/welcome-to-jekyll</link>
+        <pubDate>Sun, 20 Apr 2014 23:43:36 +0200</pubDate>
+        <author>Joris van der Aalsvorot</author>
+        <description>&lt;p&gt;So in this Blog i will start to show you how to implement an Todo App with NodeJS.&lt;/p&gt;
+</description>
+      </item>
+    
+
+  </channel>
+</rss>
