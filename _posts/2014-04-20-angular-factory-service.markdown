@@ -17,19 +17,20 @@ var myApp = angular.module('myApp', []);
 myApp.provider('helloProvider', function() {
 	this.name = '';
 
-	this.setName = function(name) {
+	var setName = function(name) {
 		this.name = name;
-	};
+	}
 
-	this.$get = function () {
-		var name = this.name;
+	var sayHello = function() {
+		return "Hello " + this.name;
+	}
 
-		if (name === '') {
-			return 'What is your name?';
-		}
-
-		return 'hello ' + name + '!';
-	};
+    this.$get = function () {
+        return {
+        	sayHello: sayHello,
+        	setName: setName
+        };
+    };
 });
 {% endhighlight %}
 
@@ -57,11 +58,11 @@ A Factory looks like this:
 var myApp = angular.module('myApp', []);
 
 myApp.factory('helloFactory', function() {
-	return {
-		sayHello: function(name) {
-			return 'Hello ' + name + '!';
-		}
-	}
+    return {
+        sayHello: function(name) {
+            return 'Hello ' + name + '!';
+        }
+    }
 });
 
 {% endhighlight %}
@@ -84,7 +85,7 @@ Again at first a simple example:
 {% highlight javaScript %}
 var myApp = angular.module('myApp', []);
 
-myApp.service('easyService', function() {
+myApp.service('helloService', function() {
 	this.sayHello = function(name) {
 		return 'Hello ' + name + '!';
 	};

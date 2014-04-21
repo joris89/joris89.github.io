@@ -67,18 +67,19 @@
 <span class="nx">myApp</span><span class="p">.</span><span class="nx">provider</span><span class="p">(</span><span class="s1">&#39;helloProvider&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">setName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">setName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-    <span class="p">};</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">sayHello</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">$get</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="s1">&#39;What is your name?&#39;</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">return</span> <span class="s1">&#39;hello &#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;!&#39;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">sayHello</span><span class="o">:</span> <span class="nx">sayHello</span><span class="p">,</span>
+            <span class="nx">setName</span><span class="o">:</span> <span class="nx">setName</span>
+        <span class="p">};</span>
     <span class="p">};</span>
 <span class="p">});</span>
 </code></pre></div>
