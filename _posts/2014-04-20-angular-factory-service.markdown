@@ -4,7 +4,7 @@ title:  "Factories, Services and Providers in Angular JS"
 date:   2014-04-21 01:21:36
 ---
 
-When I started to build my first application with AngularJS, I never knew whether i should use a factory, a provider or a service. So i started to look how the guys of this framework implemented those 3 services. I realized, that the factories and services are based on the provider. So if you understand the provider, you will understand the factory and the service as well. So let's begin with the provider:
+When I started to build my first application with AngularJS, I never knew whether I should use a factory, a provider or a service. So I started to look how the guys of this framework implemented those 3 services. I realized, that the factories and services are based on the provider. When you understand the provider, you will understand the factory and the service as well. So let's begin with the provider:
 
 <hr />
 
@@ -53,7 +53,7 @@ function provider(name, provider_) {
 
 <h3>Factory</h3>
 
-A Factory looks like this:
+A factory looks like this:
 {% highlight javaScript %}
 var myApp = angular.module('myApp', []);
 
@@ -81,7 +81,7 @@ So basically a factory is a provider but it only implements the $get method.
 
 <h3>Service</h3>
 
-Again at first a simple example:
+Again, at first a simple example:
 {% highlight javaScript %}
 var myApp = angular.module('myApp', []);
 
@@ -105,7 +105,7 @@ A service instantiates a 'class' and everything that uses this service will get 
 
 <hr />
 
-And this is how you use this 3 Services in you Controller:
+And this is how you use this 3 services in you controller:
 {% highlight javaScript %}
 var myApp = angular.module('myApp');
 
@@ -126,7 +126,7 @@ myApp.controller('helloController', function(
 
 <hr />
 
-For the future, when you don't know which on to choose, just remember the following:
+For the future, when you don't know which one to choose, just remember the following:
 
 <ul>
 	<li>
@@ -139,4 +139,3 @@ For the future, when you don't know which on to choose, just remember the follow
 		If you need more then that, choose the provider. It's the most configurable of all three. 
 	</li>
 </ul>
-  
