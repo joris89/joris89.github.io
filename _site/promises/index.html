@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta information -->
+<meta charset="utf-8">
+<meta name="description" 
+      content="So what's a promise? The answer is pretty simple: A promise is an object which represents a value that's not availabl..." >
+<meta name="author" content="Joris van der Aalsvorot">
+
+<!-- Enable responsiveness on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<!-- title -->
+<title>JavaScript Promises &middot; jorisvda</title>
+
+<!-- icons -->
+<link rel="shortcut icon" href="/public/images/favicon.ico" />
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="/public/css/responsive.gs.12col.css">
+<link rel="stylesheet" href="/public/css/animate.min.css">
+<link rel="stylesheet" href="/public/css/main.css">
+
+<!-- Google fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin-ext">
+
+
+
+<!-- feed links -->
+<link rel="alternate" href="/feed.xml" type="application/rss+xml" title="">
+
+  </head>
+  <body>
+    <div class="container azul">
+      <header class="top row gutters">
+        <div class="col span_2 center">
+          <!-- TODO: add baseurl to the logo link -->
+          <a href="" id="logo" title="jorisvda"
+             style="background-image: url(/public/images/logo.png);"></a>
+        </div>
+        <nav class="col span_10 top-navbar">
+  
+  <a href="/" title="Home"
+     >Home</a>
+  
+  <a href="/about" title="About"
+     >About</a>
+  
+</nav>
+
+      </header>
+
+      <article class="single row gutters">
+  <time class="published" datetime="2014-04-23">23 April 2014</time>
+  <h2>JavaScript Promises</h2>
+
+  <p>So what&#39;s a promise? The answer is pretty simple: A promise is an object which represents a value that&#39;s not available yet, but will be resolved in the future.
+Sounds weird? Trust me, this is good stuff. Give me 5, maybe 10 minutes (not more, I promise ) of your time and I&#39;ll tell you why! :)</p>
+
+<h3>What is a promise?</h3>
+
+<p>Yeah I know, I already told you what it is: an object and it represents a value. But what does that mean exactly?</p>
+
+<p>Typically it represents an outcome of an async task like AJAX calls. A promise can be resolved or rejected. Resolved means, the task is done without any errors. Rejected means, that the task failed. 
+By the time a promise is resolved or rejected, it will remain in this state forever.</p>
+
+<h3>Can you show me an example?</h3>
+
+<p>Sure i can! jQuery itself returns promises from it&#39;s AJAX methods:</p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/fancy/url&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>So now we have a promise. But what can we do with it? Let me show you a bit more lines of code:</p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/fancy/url&#39;</span><span class="p">);</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// once the promise is resolved, this function will be called</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// and this function will be called if the promise is rejected</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// regardless which state the promise has, this one will be called too!</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>So once you have your promise, you can attach as many callbacks as you like. 
+There&#39;s also a shorthand for attaching all of these types of callbacks at once: </p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/fancy/url&#39;</span><span class="p">);</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="c1">// done</span>
+    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="c1">// failed</span>
+    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>  <span class="c1">// always</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3>And how can I create my own promise?</h3>
+
+<p>That&#39;s simple too! In jQuery, promises begin with a Deferred. To create a Deferred do following:</p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+</code></pre></div>
+
+<p>With this deferred, you can do stuff like:</p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">deferred</span><span class="p">.</span><span class="nx">state</span><span class="p">());</span>  <span class="c1">// &quot;pending&quot;</span>
+<span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">deferred</span><span class="p">.</span><span class="nx">state</span><span class="p">());</span>  <span class="c1">// &quot;resolved&quot;</span>
+</code></pre></div>
+
+<p>or:</p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">promise</span><span class="p">.</span><span class="nx">state</span><span class="p">());</span> <span class="c1">// &quot;pending&quot;</span>
+</code></pre></div>
+
+<p>This promise object is read-only. This means you can&#39;t change the state of it like &#39;promise.reject()&#39; because most of the time the caller should not be able to change the state, this should do the deferred. The only thing the caller should do is attaching callbacks. </p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">promise</span><span class="p">.</span><span class="nx">state</span><span class="p">());</span> <span class="c1">// &quot;pending&quot;</span>
+<span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">promise</span><span class="p">.</span><span class="nx">state</span><span class="p">());</span>  <span class="c1">// &quot;resolved&quot;</span>
+</code></pre></div>
+
+</article>
+
+
+      <footer>
+        <p>
+         &copy; 2014. All rights reserved.
+        </p>
+      </footer>
+    </div>
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/public/js/jquery.fitvids.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("article").fitVids();
+      });
+    </script>
+  </body>
+</html>

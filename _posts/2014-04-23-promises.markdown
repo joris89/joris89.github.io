@@ -1,0 +1,92 @@
+---
+layout: post
+title:  "JavaScript Promises"
+date:   2014-04-23 00:35:36
+---
+
+So what's a promise? The answer is pretty simple: A promise is an object which represents a value that's not available yet, but will be resolved in the future.
+Sounds weird? Trust me, this is good stuff. Give me 5, maybe 10 minutes (not more, I promise ) of your time and I'll tell you why! :)
+
+<h3>What is a promise?</h3>
+
+Yeah I know, I already told you what it is: an object and it represents a value. But what does that mean exactly?
+
+Typically it represents an outcome of an async task like AJAX calls. A promise can be resolved or rejected. Resolved means, the task is done without any errors. Rejected means, that the task failed. 
+By the time a promise is resolved or rejected, it will remain in this state forever.
+
+<h3>Can you show me an example?</h3>
+
+Sure i can! jQuery itself returns promises from it's AJAX methods:
+
+{% highlight javascript %}
+var promise = $.get('/fancy/url');
+{% endhighlight %}
+
+So now we have a promise. But what can we do with it? Let me show you a bit more lines of code:
+
+{% highlight javascript %}
+var promise = $.get('/fancy/url');
+
+promise.done(function() {
+	// once the promise is resolved, this function will be called
+});
+
+promise.fail(function() {
+	// and this function will be called if the promise is rejected
+});
+
+promise.always(function() {
+	// regardless which state the promise has, this one will be called too!
+});
+{% endhighlight %}
+
+So once you have your promise, you can attach as many callbacks as you like. 
+There's also a shorthand for attaching all of these types of callbacks at once: 
+
+{% highlight javascript %}
+var promise = $.get('/fancy/url');
+
+promise.then(
+	function() { }, // done
+	function() { }, // failed
+	function() { }  // always
+);
+{% endhighlight %}
+
+<h3>And how can I create my own promise?</h3>
+
+That's simple too! In jQuery, promises begin with a Deferred. To create a Deferred do following:
+
+{% highlight javascript %}
+var deferred = new $.Deferred();
+{% endhighlight %}
+
+With this deferred, you can do stuff like:
+
+{% highlight javascript %}
+var deferred = new $.Deferred();
+
+console.log(deferred.state());  // "pending"
+deferred.resolve();
+console.log(deferred.state());  // "resolved"
+{% endhighlight %}
+
+or:
+
+{% highlight javascript %}
+var deferred = new $.Deferred();
+var promise = deferred.promise();
+
+console.log(promise.state()); // "pending"
+{% endhighlight %}
+
+This promise object is read-only. This means you can't change the state of it like 'promise.reject()' because most of the time the caller should not be able to change the state, this should do the deferred. The only thing the caller should do is attaching callbacks. 
+
+{% highlight javascript %}
+var deferred = new $.Deferred();
+var promise = deferred.promise();
+
+console.log(promise.state()); // "pending"
+deferred.reject();
+console.log(promise.state());  // "resolved"
+{% endhighlight %}

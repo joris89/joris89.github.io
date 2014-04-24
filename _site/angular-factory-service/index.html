@@ -4,7 +4,7 @@
     <!-- meta information -->
 <meta charset="utf-8">
 <meta name="description" 
-      content="When I started to build my first application with AngularJS, I never knew whether i should use a factory, a provider ..." >
+      content="When I started to build my first application with AngularJS, I never knew whether I should use a factory, a provider ..." >
 <meta name="author" content="Joris van der Aalsvorot">
 
 <!-- Enable responsiveness on mobile devices-->
@@ -54,7 +54,7 @@
   <time class="published" datetime="2014-04-21">21 April 2014</time>
   <h2>Factories, Services and Providers in Angular JS</h2>
 
-  <p>When I started to build my first application with AngularJS, I never knew whether i should use a factory, a provider or a service. So i started to look how the guys of this framework implemented those 3 services. I realized, that the factories and services are based on the provider. So if you understand the provider, you will understand the factory and the service as well. So let&#39;s begin with the provider:</p>
+  <p>When I started to build my first application with AngularJS, I never knew whether I should use a factory, a provider or a service. So I started to look how the guys of this framework implemented those 3 services. I realized, that the factories and services are based on the provider. When you understand the provider, you will understand the factory and the service as well. So let&#39;s begin with the provider:</p>
 
 <hr />
 
@@ -103,7 +103,7 @@
 
 <h3>Factory</h3>
 
-<p>A Factory looks like this:</p>
+<p>A factory looks like this:</p>
 
 <div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;myApp&#39;</span><span class="p">,</span> <span class="p">[]);</span>
 
@@ -130,11 +130,11 @@
 
 <h3>Service</h3>
 
-<p>Again at first a simple example:</p>
+<p>Again, at first a simple example:</p>
 
 <div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;myApp&#39;</span><span class="p">,</span> <span class="p">[]);</span>
 
-<span class="nx">myApp</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">&#39;easyService&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">myApp</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">&#39;helloService&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">sayHello</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="s1">&#39;Hello &#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;!&#39;</span><span class="p">;</span>
     <span class="p">};</span>
@@ -154,7 +154,7 @@
 
 <hr />
 
-<p>And this is how you use this 3 Services in you Controller:</p>
+<p>And this is how you use this 3 services in your controller:</p>
 
 <div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;myApp&#39;</span><span class="p">);</span>
 
@@ -175,7 +175,7 @@
 
 <hr />
 
-<p>For the future, when you don&#39;t know which on to choose, just remember the following:</p>
+<p>For the future, when you don&#39;t know which one to choose, just remember the following:</p>
 
 <ul>
     <li>
@@ -188,7 +188,6 @@
         If you need more then that, choose the provider. It's the most configurable of all three. 
     </li>
 </ul>
-  
 
 </article>
 

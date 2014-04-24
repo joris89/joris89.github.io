@@ -105,7 +105,7 @@ A service instantiates a 'class' and everything that uses this service will get 
 
 <hr />
 
-And this is how you use this 3 services in you controller:
+And this is how you use this 3 services in your controller:
 {% highlight javaScript %}
 var myApp = angular.module('myApp');
 
